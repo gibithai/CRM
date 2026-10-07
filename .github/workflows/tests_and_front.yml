@@ -1,0 +1,38 @@
+# name: E2E (reusable)
+# on:
+#   workflow_call:
+#     secrets:
+#       PLAYWRIGHT_CRM_TEST_ENV:
+#         required: true
+
+# jobs:
+#   e2e:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 24
+#           cache: npm
+#       - run: npm ci
+#       - run: npx playwright install --with-deps
+#       - run: 'echo "$TEST_ENV" >> .env'
+#         shell: bash
+#         env:
+#           TEST_ENV: ${{ secrets.PLAYWRIGHT_CRM_TEST_ENV }}
+#       - run: npm run test:qase
+name: Receive Dispatch
+
+on:
+  repository_dispatch:
+    types: [frontend-deployed]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print payload
+        run: |
+          echo "🎉 Dispatch received!"
+          echo "Ref: ${{ github.event.client_payload.ref }}"
+          echo "SHA: ${{ github.event.client_payload.sha }}"

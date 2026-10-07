@@ -1,0 +1,23 @@
+# Miscellaneous
+.DS_Store
+.vscode/
+
+#K6
+k6_cookie.txt
+
+# Node.js
+node_modules/
+
+# Environment variable file
+.env
+
+# Playwright
+test-results/
+Playwright-report/
+downloads/
+
+# Allure Reports
+allure**/
+.allure**/
+
+
